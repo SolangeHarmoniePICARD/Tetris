@@ -4,21 +4,21 @@ const ctx = canvas.getContext('2d');
 const ROW = 20;
 const COL = COLUMN = 10;
 const SQ = squareSize = 20;
-const VACANT = "white";//coleur de case vide
+const VACANT = "white"; // Coleur de case vide
 
-//dessin mes cubes à l'aide d'une fonction
+// Dessin mes cubes à l'aide d'une fonction
 
 function drawSquare(x,y,color) {
 
-  ctx.fillStyle = "white";//la couleur de ma case occupée
-  ctx.fillRect(x*SQ, y*SQ, SQ, SQ);//emplacement des pièces.
+  ctx.fillStyle = color; // La couleur de ma case occupée
+  ctx.fillRect(x*SQ, y*SQ, SQ, SQ); // Emplacement des pièces.
 
-  ctx.strokeStyle = "black";//couleur des bordures
+  ctx.strokeStyle = "black"; // Couleur des bordures
   ctx.strokeRect(x*SQ, y*SQ, SQ, SQ);
 
 }
 
-//création de la grille
+// Création de la grille
 let board = [];
 for (r = 0; r < ROW; r++) {
   board[r] = [];
@@ -26,7 +26,7 @@ for (r = 0; r < ROW; r++) {
     board[r] [c] = VACANT;
   }
 }
-//je dessin ma grille
+// Je dessine ma grille
 function drawBoard() {
   for (r = 0; r < ROW; r++) {
 
@@ -35,7 +35,44 @@ function drawBoard() {
     }
   }
 }
-drawBoard();//j'appelle ma fonction
+drawBoard(); // J'appelle ma fonction
 
-//l'objet pièce
-function Piece(){}
+// Les pièces et leurs couleurs
+const PIECES = [
+  [Z, "red"],
+  [S, "green"],
+  [L, "cyan"],
+  [I, "purple"],
+  [T, "pink"],
+  [O, "blue"],
+  [J, "orange"]
+];
+
+// Initier une pièce
+let p = new Piece(PIECES[0][0],PIECES[0][1]);
+
+// L'objet pièce
+function Piece(tetromino, color) {
+  this.tetromino = tetromino;
+  this.color = color;
+
+  this.tetrominoN = 0;//point de départ;
+  this.activeTetromino = this.tetromino[this.tetrominoN];
+
+  // Contrôle des pièces
+  this.x = 2;
+  this.y = 4;
+}
+
+// Dessin d'une pièce sur la grille
+Piece.prototype.draw = function () {
+  for (r = 0; r < this.activeTetromino.length; r++) {
+    for (c = 0; c < this.activeTetromino.length; c++) {
+      //on dessine les emplacements occupés
+      if (this.activeTetromino[r][c]) {
+        drawSquare(this.x + c, this.y + r, this.color);
+      }
+    }
+  }
+}
+p.draw();
