@@ -4,21 +4,21 @@ const ctx = canvas.getContext('2d');
 const ROW = 20;
 const COL = COLUMN = 10;
 const SQ = squareSize = 20;
-const VACANT = "white"; // Coleur de case vide
+const VACANT = "white";//coleur de case vide
 
-// Dessin mes cubes à l'aide d'une fonction
+//dessin mes cubes à l'aide d'une fonction
 
 function drawSquare(x,y,color) {
 
-  ctx.fillStyle = color; // La couleur de ma case occupée
-  ctx.fillRect(x*SQ, y*SQ, SQ, SQ); // Emplacement des pièces.
+  ctx.fillStyle = color;//la couleur de ma case occupée
+  ctx.fillRect(x*SQ, y*SQ, SQ, SQ);//emplacement des pièces.
 
-  ctx.strokeStyle = "black"; // Couleur des bordures
+  ctx.strokeStyle = "black";//couleur des bordures
   ctx.strokeRect(x*SQ, y*SQ, SQ, SQ);
 
 }
 
-// Création de la grille
+//création de la grille
 let board = [];
 for (r = 0; r < ROW; r++) {
   board[r] = [];
@@ -26,7 +26,7 @@ for (r = 0; r < ROW; r++) {
     board[r] [c] = VACANT;
   }
 }
-// Je dessine ma grille
+//je dessin ma grille
 function drawBoard() {
   for (r = 0; r < ROW; r++) {
 
@@ -35,9 +35,9 @@ function drawBoard() {
     }
   }
 }
-drawBoard(); // J'appelle ma fonction
+drawBoard();//j'appelle ma fonction
 
-// Les pièces et leurs couleurs
+//les pièces et leurs couleurs
 const PIECES = [
   [Z, "red"],
   [S, "green"],
@@ -48,10 +48,10 @@ const PIECES = [
   [J, "orange"]
 ];
 
-// Initier une pièce
-let p = new Piece(PIECES[0][0],PIECES[0][1]);
+//initier une pièce
+let p = new Piece(PIECES[0][0], PIECES[0][1]);
 
-// L'objet pièce
+//l'objet pièce
 function Piece(tetromino, color) {
   this.tetromino = tetromino;
   this.color = color;
@@ -59,12 +59,24 @@ function Piece(tetromino, color) {
   this.tetrominoN = 0;//point de départ;
   this.activeTetromino = this.tetromino[this.tetrominoN];
 
-  // Contrôle des pièces
-  this.x = 2;
-  this.y = 4;
+  //contrôle des pièces, position initiale
+  this.x = 3;
+  this.y = 0;
 }
 
-// Dessin d'une pièce sur la grille
+//fill fonction
+Piece.prototype.fill = function (color) {
+  for (r = 0; r < this.activeTetromino.length; r++) {
+    for (c = 0; c < this.activeTetromino.length; c++) {
+      //on dessine les emplacements occupés
+      if (this.activeTetromino[r][c]) {
+        drawSquare(this.x + c, this.y + r, color);
+      }
+    }
+  }
+}
+
+//dessin d'une pièce sur le tableau
 Piece.prototype.draw = function () {
   for (r = 0; r < this.activeTetromino.length; r++) {
     for (c = 0; c < this.activeTetromino.length; c++) {
@@ -75,4 +87,37 @@ Piece.prototype.draw = function () {
     }
   }
 }
+
+//faire tomber la pièce sans avoir de trace...
+Piece.prototype.unDraw = function () {
+  for (r = 0; r < this.activeTetromino.length; r++) {
+    for (c = 0; c < this.activeTetromino.length; c++) {
+      //on dessine les emplacements occupés
+      if (this.activeTetromino[r][c]) {
+        drawSquare(this.x + c, this.y + r, VACANT);
+      }
+    }
+  }
+}
 p.draw();
+
+//faire tomber la pièce
+Piece.prototype.moveDown = function () {
+  this.y++;
+  this.draw();
+}
+
+//la fréquence à laquelle les pièces vont tomber
+let dropStart = Date.now();
+function drop() {
+  let now = Date.now();
+  let delta = now - dropStart;
+
+  if (delta > 1000) {
+    p.moveDown();
+    dropStart = Date.now();
+  }
+
+  requestAnimationFrame(drop);
+}
+drop();
