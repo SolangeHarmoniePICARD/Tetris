@@ -78,26 +78,28 @@ Piece.prototype.fill = function (color) {
 
 //dessin d'une pièce sur le tableau
 Piece.prototype.draw = function () {
-  for (r = 0; r < this.activeTetromino.length; r++) {
+  this.fill(this.color);
+  /*for (r = 0; r < this.activeTetromino.length; r++) {
     for (c = 0; c < this.activeTetromino.length; c++) {
       //on dessine les emplacements occupés
       if (this.activeTetromino[r][c]) {
         drawSquare(this.x + c, this.y + r, this.color);
       }
     }
-  }
+  }*/
 }
 
 //faire tomber la pièce sans avoir de trace...
 Piece.prototype.unDraw = function () {
-  for (r = 0; r < this.activeTetromino.length; r++) {
+  this.fill(VACANT);
+  /*for (r = 0; r < this.activeTetromino.length; r++) {
     for (c = 0; c < this.activeTetromino.length; c++) {
       //on dessine les emplacements occupés
       if (this.activeTetromino[r][c]) {
         drawSquare(this.x + c, this.y + r, VACANT);
       }
     }
-  }
+  }*/
 }
 
 
@@ -105,6 +107,28 @@ Piece.prototype.unDraw = function () {
 Piece.prototype.moveDown = function () {
   this.unDraw();
   this.y++;
+  this.draw();
+}
+
+//déplacer la pièce à droite
+Piece.prototype.moveRight = function () {
+  this.unDraw();
+  this.x++;
+  this.draw();
+}
+
+//déplacer la pièce à gauche
+Piece.prototype.moveLeft = function () {
+  this.unDraw();
+  this.x--;
+  this.draw();
+}
+
+//effectuer une rotation
+Piece.prototype.rotate = function () {
+  this.unDraw();
+  this.tetrominoN = (this.tetrominoN + 1)%this.tetromino.length;
+  this.activeTetromino = this.tetromino[this.tetrominoN];
   this.draw();
 }
 
