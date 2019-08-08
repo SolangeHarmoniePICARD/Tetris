@@ -99,10 +99,11 @@ Piece.prototype.unDraw = function () {
     }
   }
 }
-p.draw();
+
 
 //faire tomber la pièce
 Piece.prototype.moveDown = function () {
+  this.unDraw();
   this.y++;
   this.draw();
 }
