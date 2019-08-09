@@ -1,5 +1,6 @@
 const canvas = document.getElementById('tetris');
 const ctx = canvas.getContext('2d');
+const scoreElement = document.getElementById('score');
 
 const ROW = 20;
 const COL = COLUMN = 10;
@@ -216,6 +217,9 @@ Piece.prototype.lock = function () {
     }
   }
   drawBoard();
+
+  //affichage du scoreElement
+  scoreElement.innerHTML = score;
 }
 
 //détecter une collision
