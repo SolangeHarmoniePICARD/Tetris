@@ -3,18 +3,34 @@
   <head>
     <meta charset="utf-8">
     <meta name="author" lang="fr" content="Solange Harmonie PICARD">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tetris</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="icone-tetris.png" />
   </head>
   <body>
-    <!-- Je dessine ma grille avec la balise canvas -->
+  <div class="animate twister-letters">
+    <h3 id="subtitle"><span>C</span><span>l</span><span>a</span><span>s</span><span>s</span><span>i</span><span>c</span> <span>G</span><span>a</span><span>m</span><span>e</span> <span>V</span><span>a</span><span>n</span><span>i</span><span>l</span><span>l</span><span>a</span><span>J</span><span>S</span></h2>
+    <h1 id="title"><span>T</span><span>e</span><span>t</span><span>r</span><span>i</span><span>s</span></h1>
+    <p id="author">
+      <span>P</span><span>a</span><span>r</span> <span>S</span><span>o</span><span>l</span><span>a</span><span>n</span><span>g</span><span>e</span> &nbsp;<span>H</span><span>a</span><span>r</span><span>m</span><span>o</span><span>n</span><span>i</span><span>e</span> &nbsp;<span>P</span><span>i</span><span>c</span><span>a</span><span>r</span><span>d</span>
+    </p>
+  </div>
+      <!-- Je dessine ma grille avec la balise canvas -->
     <canvas id="tetris" width="200" height="400"></canvas>
     <div id="scoreBox">
-      score : <span id="score">0</span>
+      Score : <span id="score">0</span>
     </div>
+
+    <p id="rs">
+      <a target="_blank" class="rs-icone" href="https://github.com/SolangeHarmoniePICARD"><i class="fab fa-github"></i></a>
+      <a target="_blank" class="rs-icone" href="https://twitter.com/SolangeHarmonie?lang=fr"><i class="fab fa-twitter"></i></a>
+      <a target="_blank" class="rs-icone" href="https://www.facebook.com/solangeharmonie.picard.5"><i class="fab fa-facebook-f"></i></a>
+      <a target="_blank" class="rs-icone" href="https://www.linkedin.com/in/solange-harmonie-picard/"><i class="fab fa-linkedin-in"></i></a>
+    </p>
     <script src="tetrominoes.js"></script>
     <script src="tetris.js"></script>
-
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/6fee70888d.js"></script>
   </body>
 </html>
