@@ -27,15 +27,16 @@ for (r = 0; r < ROW; r++) {
     board[r] [c] = VACANT;
   }
 }
-//je dessin ma grille
+
+//je dessine ma grille
 function drawBoard() {
   for (r = 0; r < ROW; r++) {
-
     for (c = 0; c < COL; c++) {
       drawSquare(c, r, board[r] [c]);
     }
   }
 }
+
 drawBoard();//j'appelle ma fonction
 
 //les pièces et leurs couleurs
@@ -49,14 +50,13 @@ const PIECES = [
   [J, "orange"]
 ];
 
-//creation de la fonctin random pour générer de nouvelles pièces
+//creation de la fonction random pour générer de nouvelles pièces
 function randomPiece() {
   let r = randomN = Math.floor(Math.random() * PIECES.length);
   return new Piece(PIECES[r][0], PIECES[r][1]);
-
 }
 
-//initier une pièce
+//initialiser une pièce
 let p = randomPiece();
 
 //l'objet pièce
@@ -69,7 +69,7 @@ function Piece(tetromino, color) {
 
   //contrôle des pièces, position initiale
   this.x = 3;
-  this.y = 0;
+  this.y = -2; //L'ERREUR VENAIT DE LÀ !
 }
 
 //fill fonction
@@ -171,7 +171,7 @@ Piece.prototype.rotate = function () {
 //je déclare le score
 let score = 0;
 
-//fonction ermettant de bloquer une pièce dès qu'elle touche le sol de quadrillage
+//fonction permettant de bloquer une pièce dès qu'elle touche le sol
 Piece.prototype.lock = function () {
 
   for (r = 0; r < this.activeTetromino.length; r++) {
@@ -181,11 +181,11 @@ Piece.prototype.lock = function () {
         continue;
       }
 
-      //fonction qui renvoit à un game over
+      // Lorsqu'une pièce touche le plafond
       if (this.y + r < 0) {
         alert("game over");
         gameOver = true;
-        break;// arret de la fonction requestAnimationFrame.
+        break; // arrêt de la fonction
       }
 
       board[this.y+r][this.x+c] = this.color;

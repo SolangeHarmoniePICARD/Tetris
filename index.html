@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="author" lang="fr" content="Solange Harmonie PICARD">
     <title>Tetris</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="icone-tetris.png" />
   </head>
   <body>
     <!-- Je dessine ma grille avec la balise canvas -->
     <canvas id="tetris" width="200" height="400"></canvas>
-    <div>
-     score :<div id="score">0</div>
+    <div id="scoreBox">
+      score : <span id="score">0</span>
     </div>
     <script src="tetrominoes.js"></script>
     <script src="tetris.js"></script>

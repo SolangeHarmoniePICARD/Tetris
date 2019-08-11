@@ -1,0 +1,13 @@
+canvas{
+  display: block;
+  margin:0 auto;
+}
+
+#scoreBox{
+  font-size: 16px;
+  text-align: center;
+}
+
+#score{
+    display: inline-block;
+}
