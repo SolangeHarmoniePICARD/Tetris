@@ -1,3 +1,7 @@
+body{
+  background-color: black;
+}
+
 canvas{
   display: block;
   margin:0 auto;
@@ -6,8 +10,10 @@ canvas{
 #scoreBox{
   font-size: 16px;
   text-align: center;
+  color: white;
+    margin-top: 1.6em;
 }
 
 #score{
-    display: inline-block;
+  display: inline-block;
 }

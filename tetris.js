@@ -41,13 +41,13 @@ drawBoard();//j'appelle ma fonction
 
 //les pièces et leurs couleurs
 const PIECES = [
-  [Z, "red"],
-  [S, "green"],
-  [L, "cyan"],
-  [I, "purple"],
-  [T, "pink"],
-  [O, "blue"],
-  [J, "orange"]
+  [Z, "#f1c40f"], //Sun Flower
+  [S, "#d35400"], // Pumpkin
+  [L, "#EA2027"], // Red pigment
+  [I, "#6F1E51"], // Magenta purple
+  [T, "#009432"], // Pixelated grass
+  [O, "#ED4C67"], // Bara red
+  [J, "#1B1464"] // Leagues under the sea
 ];
 
 //creation de la fonction random pour générer de nouvelles pièces
